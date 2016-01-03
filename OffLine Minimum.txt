@@ -1,0 +1,26 @@
+  OffLine Minimum                                                                     
+  Using the JavaScript language, have the function OffLineMinimum(strArr) take the    
+  strArr parameter being passed which will be an array of integers ranging from       
+  1...n and the letter "E" and return the correct subset based on the following       
+  rules. The input will be in the following format: ["I","I","E","I",...,"E",...,"I"] 
+  where the I's stand for integers and the E means take out the smallest integer      
+  currently in the whole set. When finished, your program should return that new set  
+  with integers separated by commas. For example: if strArr is                        
+  ["5","4","6","E","1","7","E","E","3","2"] then your program should return 4,1,5.      
+
+
+function OffLineMinimum(str) {
+   var sub ;
+   var s = []; 
+   var low ; 
+   var index = str.indexOf('E');	        // find the first 'E'
+    while(~index){				// loop untill no 'E' left
+    sub = str.slice(0, index);			// create a subset of the array from start to current 'E'
+    str.splice(index, 1);			// remove current 'E'
+    low = Math.min.apply(Math, sub).toString();	// find the lowest number in the subset
+    str.splice(str.indexOf(low), 1);		// remove the lowest number from the array
+    index = str.indexOf('E');			// find the next 'E'
+    s.push(low);				// push lowest number to return array
+  }
+  return s;
+};
